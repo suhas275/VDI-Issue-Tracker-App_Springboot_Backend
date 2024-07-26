@@ -1,0 +1,25 @@
+.navbar {
+  background-color: rgb(211, 210, 208);
+  position:sticky ; 
+  top: 0;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  z-index: 0;
+}
+
+.nav-link {
+  color: black;
+  font-size: 18px; /* Increase the font size for links */
+  transition: color 0.3s; /* Add a smooth transition effect for color change */
+}
+
+/* Hover effect for links */
+.nav-link:hover {
+  color: #2b7fe4; /* Change link color on hover */
+}
+
+/* Solid background color for the navbar after scroll */
+.navbar-scrolled {
+  background-color: #bcc5cd;
+  
+}

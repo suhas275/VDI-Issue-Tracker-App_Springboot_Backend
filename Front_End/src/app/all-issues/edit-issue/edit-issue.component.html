@@ -1,0 +1,27 @@
+<div class="container mt-4">
+    <h2 class="text-center mb-4"><strong>Edit Issue</strong></h2>
+    <form #editForm="ngForm" (ngSubmit)="onSubmit(editForm)" class="p-4 border rounded shadow-sm bg-light">
+      <div class="form-group mb-3">
+        <label for="associateId" class="form-label">Associate ID</label>
+        <input type="text" id="associateId" name="associateId" [(ngModel)]="User.associateId" class="form-control" required disabled>
+      </div>
+      <div class="form-group mb-3">
+        <label for="issueType" class="form-label">Issue Type</label>
+        <input type="text" id="issueType" name="issueType" [(ngModel)]="User.issueType" class="form-control" required disabled>
+      </div>
+      <div class="form-group mb-3">
+        <label for="issueSummary" class="form-label">Issue Summary</label>
+        <input type="text" id="issueSummary" name="issueSummary" [(ngModel)]="User.issueSummary" class="form-control" required disabled>
+      </div>
+      <div class="form-group mb-3">
+        <label for="status" class="form-label">Status</label>
+        <input type="text" id="status" name="status" [(ngModel)]="User.status" class="form-control" required>
+      </div>
+      <div class="form-group mb-3">
+        <label for="datetime" class="form-label">Date and Time</label>
+        <input type="datetime" id="datetime" name="datetime" [(ngModel)]="User.datetime" class="form-control" required disabled>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Update Issue</button>
+    </form>
+  </div>
+  

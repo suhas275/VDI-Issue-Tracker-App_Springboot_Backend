@@ -1,0 +1,42 @@
+<div class="container mt-4 text-center">
+  <h2> <strong>All Issues</strong> </h2>
+  <div class="row mb-3">
+    <div class="col-md-6 offset-md-6">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search Issues..." [(ngModel)]="searchText">
+        <button class="btn btn-primary" type="button" (click)="filterIssues()">Search</button>
+      </div>
+    </div>
+  </div>
+  <table class="table table-striped table-hover table-custom">
+    <thead>
+      <tr>
+        <th>SL.No</th>
+        <th>Associate ID</th>
+        <th>Issue Type</th>
+        <th>Issue</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users; let i = index">
+        <!-- Interpolation -->
+        <td>{{ i + 1 }}</td>
+        <td>{{ user.associateId }}</td>
+        <td>{{ user.issueType }}</td>
+        <td>{{ user.issueSummary }}</td>
+        <td>{{ user.status }}</td>
+        <td>{{ user.datetime | date }}</td>
+        <td>{{ user.datetime | date:'shortTime' }}</td>
+        <td>
+          <button class="btn btn-sm btn-primary" (click)="viewIssue(user)">View</button>
+          <button class="btn btn-sm btn-primary" (click)="editIssue(user)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteIssue(user)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

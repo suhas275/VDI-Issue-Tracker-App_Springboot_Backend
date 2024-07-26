@@ -1,0 +1,36 @@
+
+.card-container {
+    display: flex;
+    gap: 16px;
+}
+
+.card {
+    flex: 1;
+    color: #ffffff;
+    max-width: 150px;
+    background-color: #0056b3;
+    border: 1px solid #6891e8;
+    border-radius: 8px;
+    padding: 13px;
+    margin: 40px; /* Add margin for spacing between cards */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    /* box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+.card h2 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #555;
+}

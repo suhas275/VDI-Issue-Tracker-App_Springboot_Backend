@@ -1,0 +1,46 @@
+<div class="card">
+  <div class="container">
+    <form #login="ngForm" (ngSubmit)="userlogin(login.value)">
+
+      <!-- userName input -->
+      <div class="form-outline mb-4" data-mdb-input-init>
+        <label class="form-label" for="form2Example1">User Name</label>
+        <input type="text" id="form2Example1" class="form-control" [(ngModel)]="user.userName" name="userName"
+          #userName="ngModel" required minlength="3" />
+        <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" class="text-danger">
+          <div *ngIf="userName.errors && userName.errors['required']">userName is required.</div>
+          <div *ngIf="userName.errors && userName.errors['minlength']">userName must be at least 3 characters long.
+          </div>
+        </div>
+      </div>
+      <!-- Password input -->
+
+      <div class="form-outline mb-4" data-mdb-input-init>
+        <label class="form-label" for="form2Example2">Password</label>
+        <input type="password" id="form2Example2" class="form-control" [(ngModel)]="user.password" name="password"
+          #password="ngModel" required minlength="6" />
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+          <div *ngIf="password.errors && password.errors['required']">Password is required.</div>
+          <div *ngIf="password.errors && password.errors['minlength']">Password must be at least 6 characters long.
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row mb-4">
+        <div class="col">
+        
+          <a href="#!">Forgot password?</a>
+        </div>
+      </div> -->
+      <!-- Submit button -->
+      <button type="submit" data-mdb-button-init data-mdb-ripple-init 
+        class="btn btn-primary btn-block mb-4 ">Login</button>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+

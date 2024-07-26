@@ -1,0 +1,19 @@
+
+<nav class="navbar navbar-expand-md navbar-dark ">
+  <a class="navbar-brand" routerLink="/" style="margin-left: 10px; font-size: 25px;padding-top: 1px; padding-bottom: 1px;color:rgb(17, 16, 16);"><strong>VDI</strong>
+  </a>
+  <div class="collapse navbar-collapse">
+  <ul class="navbar-nav mr-auto">
+  <li class="nav-item"   *ngIf="isLoggedIn"><a class="nav-link" routerLink="/homepage">Home</a></li>
+  <li class="nav-item" *ngIf="isLoggedIn"><a class="nav-link" routerLink="/raiseissue">Raise Issue</a></li>
+  <li class="nav-item" *ngIf="isLoggedIn"><a class="nav-link" routerLink="/allissues">All Issues</a></li>
+  <li class="nav-item" *ngIf="isLoggedIn"><a class="nav-link" routerLink="/allusers">All Users</a></li>
+  </ul>
+  <ul class="navbar-nav ms-auto">
+  <li class="nav-item" style="margin-right: 5px" *ngIf="isLoggedIn"><a class="nav-link" routerLink="/profile">Profile</a></li>
+  <li class="nav-item" style="margin-right: 10px" *ngIf="isLoggedIn"><a class="nav-link" routerLink="/login" (click)="logout()">Logout</a></li> 
+  <li class="nav-item"  style="margin-right: 10px"  *ngIf="!isLoggedIn"><a class="nav-link" routerLink="/login">Login</a></li>
+  <li class="nav-item" style="margin-right: 15px" *ngIf="!isLoggedIn"><a class="nav-link" routerLink="/register">Register</a></li>
+  </ul>
+  </div>
+</nav>
