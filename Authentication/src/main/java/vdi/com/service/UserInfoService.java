@@ -24,7 +24,6 @@ import java.util.Optional;
 public class UserInfoService implements UserDetailsService {
     @Autowired
     private UserInfoRepository userInfoRepository;
-   
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Override
@@ -34,11 +33,9 @@ public class UserInfoService implements UserDetailsService {
         return userInfo.map(UserInfoDetails::new)
                 .orElseThrow(()-> new UsernameNotFoundException("User not found"+username));
     }
-    
     public boolean existsByUsername(String username) { 
       	return userInfoRepository.existsByUserName(username); 
-       }
-    
+       } 
 	  public boolean existsByEmail(String email) {
 	        return userInfoRepository.existsByEmail(email);
 	    }
@@ -51,12 +48,33 @@ public class UserInfoService implements UserDetailsService {
     public List<UserInfo> getAllUser(){
          return userInfoRepository.findAll();
     }
-    public UserInfo getUser(Integer id){
-        return userInfoRepository.findById(id).get();
-    }
    
-    public UserInfo getUserByUsername(String username) {
-        return userInfoRepository.findByUserName(username);
+//    public boolean deleteUser(Integer id) {       
+//    	if (userInfoRepository.existsById(id)) {       
+//    		userInfoRepository.deleteById(id);      
+//    		return true;         } 
+//    	else { 
+//    		return false; }}
+    
+    public UserInfo getUser(Integer id) {
+        return userInfoRepository.findById(id).orElse(null);
     }
-  
+
+
+    public UserInfo updateUser(UserInfo userInfo) {
+    	
+        Optional<UserInfo> existingUserOpt = userInfoRepository.findById(userInfo.getId());
+        if (existingUserOpt.isPresent()) {
+            UserInfo existingUser = existingUserOpt.get();
+            existingUser.setAssociateId(userInfo.getAssociateId());
+            existingUser.setUserName(userInfo.getUserName());
+            existingUser.setEmail(userInfo.getEmail());
+            existingUser.setContactNo(userInfo.getContactNo());
+            // Add other fields as necessary
+            return userInfoRepository.save(existingUser);
+        } else {
+            throw new UsernameNotFoundException("User not found with id: " + userInfo.getId());
+        }
+    }
+
 }

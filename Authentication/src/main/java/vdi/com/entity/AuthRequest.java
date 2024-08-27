@@ -12,6 +12,14 @@ public class AuthRequest {
     private String userName;
     private String password;
     private String role;
+    
+    // Getters and Setters
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	public String getUserName() {
 		return userName;
 	}

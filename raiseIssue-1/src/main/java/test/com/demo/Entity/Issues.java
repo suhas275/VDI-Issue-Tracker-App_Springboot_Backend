@@ -1,13 +1,26 @@
 package test.com.demo.Entity;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "Issue")
 public class Issues {
@@ -45,6 +58,10 @@ public class Issues {
    @Column(name="status")
    private String status;
 
+
+   @Column(name="no of impacts")
+   private Long impactes;
+   
    @Column(name="datetime")
    private String datetime;
    
@@ -52,112 +69,121 @@ public class Issues {
    public Issues() {
    }
    
-	public Issues(Long id, Long associateId, String issueSummary, String issueType, String description,
-			String sourceIP, String destinationIP, String vpn, String connectivity, 
-			String status, String datetime) {
-		super();
-		this.id = id;
-		this.associateId = associateId;
-		this.issueSummary = issueSummary;
-		this.issueType = issueType;
-		this.description = description;
-		this.sourceIP = sourceIP;
-		this.destinationIP = destinationIP;
-		this.vpn = vpn;
-		this.connectivity = connectivity;
-		this.status = status;
-		this.datetime = datetime;
-	}
+   //comment section 
+   @OneToMany(mappedBy = "issue", cascade = CascadeType.ALL, orphanRemoval = true)
+   private List<Comment> comments = new ArrayList<>();
 
-	public Long getId() {
-		return id;
-	}
+public Issues(Long id, Long associateId, String issueSummary, String issueType, String description, String sourceIP,
+		String destinationIP, String vpn, String connectivity, String status, Long impactes, String datetime) {
+	super();
+	this.id = id;
+	this.associateId = associateId;
+	this.issueSummary = issueSummary;
+	this.issueType = issueType;
+	this.description = description;
+	this.sourceIP = sourceIP;
+	this.destinationIP = destinationIP;
+	this.vpn = vpn;
+	this.connectivity = connectivity;
+	this.status = status;
+	this.impactes = impactes;
+	this.datetime = datetime;
+}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+public Long getId() {
+	return id;
+}
 
-	public Long getAssociateId() {
-		return associateId;
-	}
+public void setId(Long id) {
+	this.id = id;
+}
 
-	public void setAssociateId(Long associateId) {
-		this.associateId = associateId;
-	}
+public Long getAssociateId() {
+	return associateId;
+}
 
-	public String getissueSummary() {
-		return issueSummary;
-	}
+public void setAssociateId(Long associateId) {
+	this.associateId = associateId;
+}
 
-	public void setissueSummary(String issueSummary) {
-		this.issueSummary = issueSummary;
-	}
+public String getIssueSummary() {
+	return issueSummary;
+}
 
-	public String getIssueType() {
-		return issueType;
-	}
+public void setIssueSummary(String issueSummary) {
+	this.issueSummary = issueSummary;
+}
 
-	public void setIssueType(String issueType) {
-		this.issueType = issueType;
-	}
+public String getIssueType() {
+	return issueType;
+}
 
-	public String getdescription() {
-		return description;
-	}
+public void setIssueType(String issueType) {
+	this.issueType = issueType;
+}
 
-	public void setdescription(String description) {
-		this.description = description;
-	}
+public String getDescription() {
+	return description;
+}
 
-	public String getSourceIP() {
-		return sourceIP;
-	}
+public void setDescription(String description) {
+	this.description = description;
+}
 
-	public void setSourceIP(String sourceIP) {
-		this.sourceIP = sourceIP;
-	}
+public String getSourceIP() {
+	return sourceIP;
+}
 
-	public String getDestinationIP() {
-		return destinationIP;
-	}
+public void setSourceIP(String sourceIP) {
+	this.sourceIP = sourceIP;
+}
 
-	public void setDestinationIP(String destinationIP) {
-		this.destinationIP = destinationIP;
-	}
+public String getDestinationIP() {
+	return destinationIP;
+}
 
-	public String getVpn() {
-		return vpn;
-	}
+public void setDestinationIP(String destinationIP) {
+	this.destinationIP = destinationIP;
+}
 
-	public void setVpn(String vpn) {
-		this.vpn = vpn;
-	}
+public String getVpn() {
+	return vpn;
+}
 
-	public String getconnectivity() {
-		return connectivity;
-	}
+public void setVpn(String vpn) {
+	this.vpn = vpn;
+}
 
-	public void setconnectivity(String connectivity) {
-		this.connectivity = connectivity;
-	}
+public String getConnectivity() {
+	return connectivity;
+}
 
-	
-	public String getStatus() {
-		return status;
-	}
+public void setConnectivity(String connectivity) {
+	this.connectivity = connectivity;
+}
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+public String getStatus() {
+	return status;
+}
 
-	public String getdatetime() {
-		return datetime;
-	}
+public void setStatus(String status) {
+	this.status = status;
+}
 
-	public void setdatetime(String datetime) {
-		this.datetime = datetime;
-	}
+public Long getImpactes() {
+	return impactes;
+}
 
-   
-   
+public void setImpactes(Long impactes) {
+	this.impactes = impactes;
+}
+
+public String getDatetime() {
+	return datetime;
+}
+
+public void setDatetime(String datetime) {
+	this.datetime = datetime;
+}
+
 }

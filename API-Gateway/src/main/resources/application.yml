@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+      
+      - id: authentication
+        uri: lb://AUTHENTICATION
+        predicates:
+        - Path=/auth/**
+        
+      - id: raiseIssue-1
+        uri: lb://RAISEISSUE
+        predicates:
+        - Path=/issue/**
+        

@@ -1,6 +1,5 @@
 package vdi.com.service;
 
-
 import vdi.com.entity.UserInfo;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -12,20 +11,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserInfoDetails implements UserDetails {
-	
-	
-	
-    String userName=null;
-    String password = null;
-    List<GrantedAuthority> authorities;
 
-    public UserInfoDetails(UserInfo userInfo){
-       userName= userInfo.getUserName();
-       password= userInfo.getPassword();
-       authorities= Arrays.stream(userInfo.getRoles().split(","))
-               .map(SimpleGrantedAuthority::new)
-               .collect(Collectors.toList());
+    private String userName;
+    private String password;
+    private List<GrantedAuthority> authorities;
+
+    public UserInfoDetails(UserInfo userInfo) {
+        this.userName = userInfo.getUserName();
+        this.password = userInfo.getPassword();
+        this.authorities = Arrays.stream(userInfo.getRoles().split(","))
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
     }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;

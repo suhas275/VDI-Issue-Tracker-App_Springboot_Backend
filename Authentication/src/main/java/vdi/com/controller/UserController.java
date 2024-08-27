@@ -15,16 +15,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200/") 
@@ -124,15 +120,38 @@ public class UserController {
   }
   
 
-  @GetMapping("/getUserByUsername/{username}")
-  public ResponseEntity<UserInfo> getUserByUsername(@PathVariable String username) {
-     UserInfo userInfo = userInfoService.getUserByUsername(username);
-     if (userInfo != null) {
-         return ResponseEntity.ok(userInfo);
-     } else {
-         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-     }
-  }
+//update user details in profile page
+@PutMapping("/{id}")
+public ResponseEntity<Object> updateUser(@PathVariable("id") Integer id, @RequestBody UserInfo userInfo) {
+
+//public ResponseEntity<Object> updateUser(@PathVariable Integer id, @RequestBody UserInfo userInfo) {
+    Map<String, Object> response = new HashMap<>();
+    try {
+        UserInfo existingUser = userInfoService.getUser(id);
+        if (existingUser == null) {
+            response.put("msg", "User not found");
+            response.put("success", false);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        }
+
+        // Update the existing user's details
+        existingUser.setAssociateId(userInfo.getAssociateId());
+        existingUser.setUserName(userInfo.getUserName());
+        existingUser.setEmail(userInfo.getEmail());
+        existingUser.setContactNo(userInfo.getContactNo());
+        // Add other fields as necessary
+
+        UserInfo updatedUser = userInfoService.updateUser(existingUser);
+        response.put("msg", "User updated successfully");
+        response.put("success", true);
+        response.put("user", updatedUser);
+        return ResponseEntity.ok(response);
+    } catch (Exception e) {
+        response.put("msg", "Internal Server Error");
+        response.put("success", false);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+    }
+}
    
   
  
