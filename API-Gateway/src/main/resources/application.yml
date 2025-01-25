@@ -12,4 +12,3 @@ spring:
         uri: lb://RAISEISSUE
         predicates:
         - Path=/issue/**
-        
