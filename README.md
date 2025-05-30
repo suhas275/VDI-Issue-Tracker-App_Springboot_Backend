@@ -1,4 +1,6 @@
-# VDI-Issue-Tracker-App_Springboot_Angular_TechStack
+# VDI-Issue-Tracker-App
+## FrontEnd Code: https://github.com/suhas275/VDI-Issue-Tracker-App-FrontEnd
+ 
 
 ### Running your Application with Maven
 ``mvn spring-boot:run``
