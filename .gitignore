@@ -1,0 +1,7 @@
+# Root ignore
+/.idea/
+/.gradle/
+**/build/
+**/bin/
+**/target/
+.DS_Store
